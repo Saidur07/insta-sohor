@@ -151,18 +151,23 @@ const showPosts = (posts) => {
 };
 
 const displayLikedPosts = () => {
+  //Clearing liked previous field to counter the double adding problem | Bug fix
+  document.getElementById("liked-container").innerHTML = '';
   const likedPosts = getLikedPosts();
   likedPosts.forEach((post) => {
     const div = createPost(post);
-    document.getElementById("liked").appendChild(div);
+    document.getElementById("liked-container").appendChild(div);
   });
 };
 
 const displayReportedPosts = () => {
+  //Clearing reported previous field to counter the double adding problem | Bug fix
+  document.getElementById("report-container").innerHTML = '';
   const reportedPosts = getReportedPosts();
-  posts.forEach((post) => {
+  //reportedPosts should be here but got posts here
+  reportedPosts.forEach((post) => {
     const div = createPost(post);
-    document.getElementById("reported").appendChild(div);
+    document.getElementById("report-container").appendChild(div);
   });
 };
 
