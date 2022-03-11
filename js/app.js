@@ -142,7 +142,9 @@ const showPosts = (posts) => {
   const productsContainer = document.getElementById("posts");
   productsContainer.innerHTML = "";
 
-  posts.forEach((post) => {
+  //After reporting if clicked the like button the reported post kept coming back | Bug fix
+  const remainingPosts = posts.filter((post) => !reportedPostsId.includes(post.id));
+  remainingPosts.forEach((post) => {
     const div = createPost(post);
     productsContainer.appendChild(div);
   });
