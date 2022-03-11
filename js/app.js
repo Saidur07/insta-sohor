@@ -35,24 +35,29 @@ const displayContent = (text) => {
 const switchTab = (id) => {
   if (id === "posts") {
     document.getElementById("posts").style.display = "grid";
+    document.getElementById("bonus-part").style.display = "block";
     document.getElementById("liked").style.display = "none";
     document.getElementById("reported").style.display = "none";
   } else if (id === "liked") {
     document.getElementById("liked").style.display = "block";
     document.getElementById("posts").style.display = "none";
     document.getElementById("reported").style.display = "none";
+    document.getElementById("bonus-part").style.display = "none";
 
     displayLikedPosts();
   } else {
     document.getElementById("reported").style.display = "block";
     document.getElementById("posts").style.display = "none";
     document.getElementById("liked").style.display = "none";
+    document.getElementById("bonus-part").style.display = "none";
 
     displayReportedPosts();
   }
 };
 
 const createPost = (post) => {
+  //User image was missing here | Bug (user image, user name and user comment) fix
+  const userImage = post.userImage;
   const image = post.image;
   const div = document.createElement("article");
   div.classList.add("post");
@@ -64,7 +69,7 @@ const createPost = (post) => {
                     target="_blank"
                     class="post__avatar"
                   >
-                    <img src="${image}" alt="User Picture" />
+                    <img src="${userImage}" alt="User Picture" />
                   </a>
                   <a href="#" class="post__user">phero</a>
                 </div>
@@ -121,9 +126,9 @@ const createPost = (post) => {
                   <div class="post__description">
                     <small>
                       <a class="post__name--underline" href="#">
-                          ${post.comments?.user}
+                          ${post?.comments[0]?.user} :
                       </a>
-                      ${post.comments?.text}
+                      ${post?.comments[0]?.text}
                     </small>
                   </div>
                   <span class="post__date-time">30 minutes ago</span>
